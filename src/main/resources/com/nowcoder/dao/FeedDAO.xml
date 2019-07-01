@@ -13,12 +13,12 @@
 
         WHERE id &lt; #{maxId}
 
-        <if test="userIds.size() != 0">
+        <if test="userIds.size() != 0"> <!--MyBatis里面的动态sql-->
             AND user_id in
             <foreach item="item" index="index" collection="userIds"
                      open="(" separator="," close=")">
                 #{item}
-            </foreach>
+            </foreach> <!-- (userId1,userId2,userId3,···) -->
         </if>
         ORDER BY id DESC
         LIMIT #{count}
